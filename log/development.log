@@ -1,0 +1,555 @@
+  [1m[35m (119.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (129.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2129357373792580050);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateServices (20170303144650)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (82.0ms)[0m  [1m[35mCREATE TABLE "services" ("ser_description" character varying, "ser_note" character varying, "pkservice" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170303144650"]]
+  [1m[35m (17.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCategories (20170303144943)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (90.4ms)[0m  [1m[35mCREATE TABLE "categories" ("cat_description" character varying, "cat_note" character varying, "pkcategory" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170303144943"]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateListPrices (20170303145415)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (77.3ms)[0m  [1m[35mCREATE TABLE "list_prices" ("lis_default_mark" character varying, "lis_description" character varying, "pklist" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170303145415"]]
+  [1m[35m (20.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateListPriceDetails (20170303145858)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (84.4ms)[0m  [1m[35mCREATE TABLE "list_price_details" ("id" serial primary key, "listprice" character varying, "service_pkservice" integer, "category_pkcategory" integer, "list_price_pklist" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170303145858"]]
+  [1m[35m (19.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2129357373792580050)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("cat_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkcategory"[0m  [["cat_description", "A"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (20.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("cat_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkcategory"[0m  [["cat_description", "B"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("cat_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkcategory"[0m  [["cat_description", "C"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("cat_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkcategory"[0m  [["cat_description", "D"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "services" ("ser_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkservice"[0m  [["ser_description", "ARRASTREE"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "services" ("ser_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkservice"[0m  [["ser_description", "ARRASDHGFFGTREE"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "services" ("ser_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkservice"[0m  [["ser_description", "ARRASTRGHFHDFJEE"], ["created_at", 2017-03-04 06:59:11 UTC], ["updated_at", 2017-03-04 06:59:11 UTC]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "services" ("ser_description", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "pkservice"[0m  [["ser_description", "ARRASTRFDGJHGFKJDEE"], ["created_at", 2017-03-04 06:59:12 UTC], ["updated_at", 2017-03-04 06:59:12 UTC]]
+  [1m[35m (5.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:29:29 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.8ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (35.5ms)
+Completed 200 OK in 666ms (Views: 609.6ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/list_prices/new" for 127.0.0.1 at 2017-03-04 12:29:33 +0530
+Processing by ListPricesController#new as HTML
+  Rendering list_prices/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[36mService Load (0.6ms)[0m  [1m[34mSELECT "services".* FROM "services"[0m
+  Rendered list_prices/new.html.erb within layouts/application (77.6ms)
+Completed 200 OK in 105ms (Views: 90.9ms | ActiveRecord: 5.9ms)
+
+
+Started POST "/list_prices" for 127.0.0.1 at 2017-03-04 12:29:42 +0530
+Processing by ListPricesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5IDy+E6KWp9T4KD1VxDDGWvab7J2z5HkfQuJ1GsgEzb78FoMGdjhNaZJ63ZuzoG3yTHeRg8dIkG8Pot6c/m8GQ==", "price"=>{"list_description"=>"gbfnfn", "lis_default_mark"=>"false"}, "price_list"=>{"1"=>{"1"=>"1", "2"=>"", "3"=>"", "4"=>""}, "2"=>{"1"=>"", "2"=>"1", "3"=>"", "4"=>""}, "3"=>{"1"=>"", "2"=>"", "3"=>"1", "4"=>""}, "4"=>{"1"=>"", "2"=>"", "3"=>"", "4"=>"1"}}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "list_prices" ("lis_default_mark", "lis_description", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "pklist"[0m  [["lis_default_mark", "false"], ["lis_description", "gbfnfn"], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (64.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", "1"], ["service_pkservice", 1], ["category_pkcategory", 1], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (24.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 1], ["category_pkcategory", 2], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (167.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 1], ["category_pkcategory", 3], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (29.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 1], ["category_pkcategory", 4], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 2], ["category_pkcategory", 1], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", "1"], ["service_pkservice", 2], ["category_pkcategory", 2], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 2], ["category_pkcategory", 3], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (6.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 2], ["category_pkcategory", 4], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 3], ["category_pkcategory", 1], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 3], ["category_pkcategory", 2], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", "1"], ["service_pkservice", 3], ["category_pkcategory", 3], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 3], ["category_pkcategory", 4], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 4], ["category_pkcategory", 1], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 4], ["category_pkcategory", 2], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", ""], ["service_pkservice", 4], ["category_pkcategory", 3], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (4.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "list_price_details" ("listprice", "service_pkservice", "category_pkcategory", "list_price_pklist", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["listprice", "1"], ["service_pkservice", 4], ["category_pkcategory", 4], ["list_price_pklist", 1], ["created_at", 2017-03-04 06:59:42 UTC], ["updated_at", 2017-03-04 06:59:42 UTC]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 433ms (ActiveRecord: 371.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:29:42 +0530
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.5ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 29ms (Views: 26.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/list_prices/1/edit" for 127.0.0.1 at 2017-03-04 12:29:45 +0530
+Processing by ListPricesController#edit as HTML
+  Parameters: {"pklist"=>"1"}
+  [1m[36mListPrice Load (0.2ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE "list_prices"."pklist" = $1 LIMIT $2[0m  [["pklist", 1], ["LIMIT", 1]]
+  [1m[36mListPriceDetail Load (1.0ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1[0m  [["list_price_pklist", 1]]
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" IN (1, 2, 3, 4)[0m
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" IN (1, 2, 3, 4)[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.6ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.7ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  Rendering list_prices/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered list_prices/edit.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 271ms (Views: 30.1ms | ActiveRecord: 17.0ms)
+
+
+Started PUT "/list_prices/1" for 127.0.0.1 at 2017-03-04 12:29:53 +0530
+Processing by ListPricesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rnxbkOcbW4Nm+Yq3KEMyRJxG+RlC9bV9W8p/9ODt5WmxDPNksEngKZNQwTQRnXDqPq1I7TsnBtia/31a+DRKRg==", "price"=>{"lis_description"=>"gbfnfn"}, "list_price"=>{"1"=>{"1"=>"1", "2"=>"1", "3"=>"", "4"=>""}, "2"=>{"1"=>"", "2"=>"1", "3"=>"1", "4"=>""}, "3"=>{"1"=>"", "2"=>"", "3"=>"1", "4"=>""}, "4"=>{"1"=>"1", "2"=>"", "3"=>"", "4"=>"1"}}, "pklist"=>"1"}
+  [1m[36mListPrice Load (0.4ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE "list_prices"."pklist" = $1 LIMIT $2[0m  [["pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "list_prices" SET "lis_default_mark" = $1, "updated_at" = $2 WHERE "list_prices"."pklist" = $3[0m  [["lis_default_mark", nil], ["updated_at", 2017-03-04 06:59:53 UTC], ["pklist", 1]]
+  [1m[35m (17.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 06:59:53 UTC], ["id", 2]]
+  [1m[35m (66.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 06:59:53 UTC], ["id", 7]]
+  [1m[35m (26.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 06:59:53 UTC], ["id", 13]]
+  [1m[35m (48.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 219ms (ActiveRecord: 169.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:29:53 +0530
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.4ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (20.2ms)
+Completed 200 OK in 61ms (Views: 57.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/list_prices/1/edit" for 127.0.0.1 at 2017-03-04 12:29:55 +0530
+Processing by ListPricesController#edit as HTML
+  Parameters: {"pklist"=>"1"}
+  [1m[36mListPrice Load (0.3ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE "list_prices"."pklist" = $1 LIMIT $2[0m  [["pklist", 1], ["LIMIT", 1]]
+  [1m[36mListPriceDetail Load (0.7ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1[0m  [["list_price_pklist", 1]]
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" IN (1, 2, 3, 4)[0m
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" IN (1, 3, 4, 2)[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.7ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  Rendering list_prices/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered list_prices/edit.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 157ms (Views: 40.7ms | ActiveRecord: 15.8ms)
+
+
+Started PUT "/list_prices/1" for 127.0.0.1 at 2017-03-04 12:30:09 +0530
+Processing by ListPricesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"I7Fz+sKwF0CLf/xgpAb7njeyf3sNRv7KsFH4RJvc8B88wdsOleKs6n7Wt+Od2LkwlVnOj3SUTW9xZPrqgwVfMA==", "price"=>{"lis_description"=>"WOW"}, "lis_default_mark"=>"true", "list_price"=>{"1"=>{"1"=>"1", "3"=>"1", "4"=>"1", "2"=>"1"}, "2"=>{"1"=>"1", "3"=>"1", "4"=>"1", "2"=>"1"}, "3"=>{"1"=>"1", "3"=>"1", "4"=>"1", "2"=>"1"}, "4"=>{"1"=>"1", "3"=>"1", "4"=>"1", "2"=>"1"}}, "pklist"=>"1"}
+  [1m[36mListPrice Load (0.3ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE "list_prices"."pklist" = $1 LIMIT $2[0m  [["pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "list_prices" SET "lis_description" = $1, "lis_default_mark" = $2, "updated_at" = $3 WHERE "list_prices"."pklist" = $4[0m  [["lis_description", "WOW"], ["lis_default_mark", "true"], ["updated_at", 2017-03-04 07:00:09 UTC], ["pklist", 1]]
+  [1m[35m (8.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:09 UTC], ["id", 3]]
+  [1m[35m (73.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:09 UTC], ["id", 4]]
+  [1m[35m (37.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 1], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 5]]
+  [1m[35m (74.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 8]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 2], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 9]]
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 12]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 3], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 10]]
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 15]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mListPriceDetail Load (0.2ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."service_pkservice" = $1 AND "list_price_details"."category_pkcategory" = $2 AND "list_price_details"."list_price_pklist" = $3 LIMIT $4[0m  [["service_pkservice", 4], ["category_pkcategory", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "list_price_details" SET "listprice" = $1, "updated_at" = $2 WHERE "list_price_details"."id" = $3[0m  [["listprice", "1"], ["updated_at", 2017-03-04 07:00:10 UTC], ["id", 14]]
+  [1m[35m (10.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 300ms (ActiveRecord: 238.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:30:10 +0530
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.6ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/list_prices/1/edit" for 127.0.0.1 at 2017-03-04 12:30:14 +0530
+Processing by ListPricesController#edit as HTML
+  Parameters: {"pklist"=>"1"}
+  [1m[36mListPrice Load (0.3ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE "list_prices"."pklist" = $1 LIMIT $2[0m  [["pklist", 1], ["LIMIT", 1]]
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1[0m  [["list_price_pklist", 1]]
+  [1m[36mService Load (1.6ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" IN (1, 2, 3, 4)[0m
+  [1m[36mCategory Load (1.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" IN (1, 2, 3, 4)[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 1], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.3ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 1[0m
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 2], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.4ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 2[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 3], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.7ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 3[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT  "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."list_price_pklist" = $3 ORDER BY "list_price_details"."id" ASC LIMIT $4[0m  [["list_price_pklist", 1], ["service_pkservice", 4], ["list_price_pklist", 1], ["LIMIT", 1]]
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.5ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 1[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 1[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 2[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 2[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 3[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 3[0m
+  [1m[36mListPriceDetail Load (0.6ms)[0m  [1m[34mSELECT "list_price_details".* FROM "list_price_details" WHERE "list_price_details"."list_price_pklist" = $1 AND "list_price_details"."service_pkservice" = $2 AND "list_price_details"."category_pkcategory" = 4[0m  [["list_price_pklist", 1], ["service_pkservice", 4]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "services".* FROM "services" WHERE "services"."pkservice" = 4[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."pkcategory" = 4[0m
+  Rendering list_prices/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered list_prices/edit.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 145ms (Views: 28.5ms | ActiveRecord: 20.0ms)
+
+
+Started GET "/list_prices?utf8=%E2%9C%93&q%5Blis_description_cont%5D=w" for 127.0.0.1 at 2017-03-04 12:30:20 +0530
+Processing by ListPricesController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"lis_description_cont"=>"w"}}
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.8ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE ("list_prices"."lis_description" ILIKE '%w%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 35ms (Views: 32.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/list_prices?utf8=%E2%9C%93&q%5Blis_description_cont%5D=www" for 127.0.0.1 at 2017-03-04 12:30:24 +0530
+Processing by ListPricesController#index as HTML
+  Parameters: {"utf8"=>"✓", "q"=>{"lis_description_cont"=>"www"}}
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.4ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" WHERE ("list_prices"."lis_description" ILIKE '%www%') LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 33ms (Views: 30.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:30:28 +0530
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.5ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 26ms (Views: 24.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:30:34 +0530
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.5ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 29ms (Views: 27.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/list_prices/new" for 127.0.0.1 at 2017-03-04 12:30:39 +0530
+Processing by ListPricesController#new as HTML
+  Rendering list_prices/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT "services".* FROM "services"[0m
+  Rendered list_prices/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 28ms (Views: 26.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-04 12:31:47 +0530
+Processing by ListPricesController#index as HTML
+  Rendering list_prices/index.html.erb within layouts/application
+  [1m[36mListPrice Load (0.5ms)[0m  [1m[34mSELECT  "list_prices".* FROM "list_prices" LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  Rendered list_prices/index.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 33ms (Views: 30.7ms | ActiveRecord: 0.5ms)
+
+

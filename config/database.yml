@@ -1,0 +1,21 @@
+defaults: &defaults
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  pool: 5
+  timeout: 5000
+
+development:
+  database: arkatest
+  <<: *defaults
+
+
+test:
+  database: arkatest
+  <<: *defaults
+
+production:
+  database: arkatest
+  <<: *defaults
